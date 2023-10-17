@@ -2,7 +2,7 @@
 from homeassistant.helpers import intent
 import homeassistant.helpers.config_validation as cv
 
-from . import DOMAIN, EVENT_SHOPPING_LIST_UPDATED
+from . import DOMAIN, EVENT
 
 INTENT_ADD_ITEM = "HassShoppingListAddItem"
 INTENT_LAST_ITEMS = "HassShoppingListLastItems"
@@ -27,7 +27,7 @@ class AddItemIntent(intent.IntentHandler):
         await intent_obj.hass.data[DOMAIN].async_add(item)
 
         response = intent_obj.create_response()
-        intent_obj.hass.bus.async_fire(EVENT_SHOPPING_LIST_UPDATED)
+        intent_obj.hass.bus.async_fire(EVENT)
         return response
 
 
